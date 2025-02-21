@@ -13,6 +13,24 @@ namespace Bank_System
         private string _Email;
         private string _Phone;
 
+        // constructor
+        public clsPerson(string FirstName, string LastName, string Email, string Phone)
+        {
+            _FirstName = FirstName;
+            _LastName = LastName;
+            _Email = Email;
+            _Phone = Phone;
+        }
+        // default constructor
+        public clsPerson()
+        {
+            _FirstName = "";
+            _LastName = "";
+            _Email = "";
+            _Phone = "";
+        }
+        
+
         // getters and setters for private fields
         public string FirstName
         {

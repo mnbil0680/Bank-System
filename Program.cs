@@ -9,8 +9,11 @@ namespace Bank_System
         {
             Console.WriteLine("Hello, World!");
 
-    
-            //
+            // FirstName - LastName - Email - Phone - AccountNumber - BinCode - Balance
+
+            clsPerson person = new clsPerson();
+            person.FirstName    = "John";
+            
            
 
         }

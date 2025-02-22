@@ -95,11 +95,13 @@ namespace Bank_System
             }
             return dbNum;
         }
-        
-        
-        // IsValidDate()
-        
 
+        public static string ReadString()
+        {
+            return Console.ReadLine()?.Trim() ?? "";
+        }
+
+       
 
 
 

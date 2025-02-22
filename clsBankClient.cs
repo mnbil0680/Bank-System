@@ -50,12 +50,13 @@ namespace Bank_System
         {
             string PathName = @"D:\Bank System\Clients.txt";
             List<clsBankClient> lClients = new List<clsBankClient>();
+            FileStream FS = System.IO.File.OpenRead(PathName);
+            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
             if (System.IO.File.Exists(PathName))
             {
                 try
                 {
-                    FileStream FS = System.IO.File.OpenRead(PathName);
-                    StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+                    
                     string Line;
                     while ((Line = SR.ReadLine()) != null)
                     {
@@ -74,6 +75,7 @@ namespace Bank_System
                 catch (Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
+                    FS.Close();
                     return lClients;
 
 
@@ -91,29 +93,41 @@ namespace Bank_System
         {
             // path of the file that we want to create
             string PathName = @"D:\Bank System\Clients.txt";
+            
             if (System.IO.File.Exists(PathName))
             {
                 try
                 {
-                    FileStream FS = System.IO.File.OpenRead(PathName);
 
-                    StreamReader SR = new StreamReader(FS, Encoding.UTF8);
 
-                    string DataLine;
+                    string DataLine = "";
 
+                    System.IO.File.WriteAllText(PathName, String.Empty);
                     foreach (clsBankClient C in lClients)
                     {
+                        DataLine += "\n";
                         DataLine = _ConverClientObjectToLine(C);
+
+
                         // write to file
-                        System.IO.File.WriteAllText(PathName, DataLine);
+                        using (FileStream fs = new FileStream(PathName, FileMode.Append, FileAccess.Write))
+                        {
+                            using (StreamWriter sw = new StreamWriter(fs))
+                            {
+                                sw.WriteLine(DataLine);
+                            }
+                        }
+
+                       
 
                     }
-                    FS.Close();
+
 
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
+                   
                 }
             }
             else
@@ -142,13 +156,13 @@ namespace Bank_System
         {
             // path of the file that we want to create
             string PathName = @"D:\Bank System\Clients.txt";
+            FileStream FS = System.IO.File.OpenRead(PathName);
+            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
             if (System.IO.File.Exists(PathName))
             {
                 try
                 {
-                    FileStream FS = System.IO.File.OpenRead(PathName);
-
-                    StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+                    
 
                     System.IO.File.WriteAllText(PathName, stDataLine);
 
@@ -158,6 +172,7 @@ namespace Bank_System
                 catch (Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
+                    FS.Close();
                 }
             }
             else
@@ -224,12 +239,14 @@ namespace Bank_System
 
             // path of the file that we want to create
             string PathName = @"D:\Bank System\Clients.txt";
+            FileStream FS = System.IO.File.OpenRead(PathName);
+            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
             if (System.IO.File.Exists(PathName))
             {
                 try
                 {
-                    FileStream FS = System.IO.File.OpenRead(PathName);
-                    StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+                    
+                    
                     string Line;
                     while ((Line = SR.ReadLine()) != null)
                     {
@@ -248,6 +265,7 @@ namespace Bank_System
                 catch (Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
+                    FS.Close();
                     return _GetEmptyClientObject();
 
                 }
@@ -267,12 +285,13 @@ namespace Bank_System
 
             // path of the file that we want to create
             string PathName = @"D:\Bank System\Clients.txt";
+            FileStream FS = System.IO.File.OpenRead(PathName);
+            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
             if (System.IO.File.Exists(PathName))
             {
                 try
                 {
-                    FileStream FS = System.IO.File.OpenRead(PathName);
-                    StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+                    
                     string Line;
                     while ((Line = SR.ReadLine()) != null)
                     {
@@ -291,6 +310,7 @@ namespace Bank_System
                 catch (Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
+                    FS.Close();
                     return _GetEmptyClientObject();
 
                 }

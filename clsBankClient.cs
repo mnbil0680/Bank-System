@@ -19,29 +19,34 @@ namespace Bank_System
         private static clsBankClient _ConvertLinetoClientObject(string Line, string Seperator = "#//#")
         {
             List<string> lClientData; // FirstName#//#LastName#//#Email#//#Phone#//#AccounNumber#//#PinCode#//#AccountBalance
-            lClientData =
+            lClientData = clsString.Split(Line, Seperator);
+
+            return new clsBankClient(enMode.UpdateMode, lClientData[0], lClientData[1], lClientData[2],lClientData[3], lClientData[4], lClientData[5], float.Parse(lClientData[6], System.Globalization.CultureInfo.InvariantCulture) );
         }
 
-        /*
-          static clsBankClient _ConvertLinetoClientObject(string Line, string Seperator = "#//#")
-    {
-        vector<string> vClientData;
-        vClientData = clsString::Split(Line, Seperator);
+        static clsBankClient _GetEmptyClientObject()
+        {
+            return new clsBankClient(enMode.EmptyMode, "", "", "", "", "", "", 0);
+        }
+        private static string _ConverClientObjectToLine(clsBankClient Client, string Seperator = "#//#")
+        {
 
-        return clsBankClient(enMode::UpdateMode, vClientData[0], vClientData[1], vClientData[2],
-            vClientData[3], vClientData[4], vClientData[5], stod(vClientData[6]));
+            string stClientRecord = "";
+            stClientRecord += Client.FirstName + Seperator;
+            stClientRecord += Client.LastName + Seperator;
+            stClientRecord += Client.Email + Seperator;
+            stClientRecord += Client.Phone + Seperator;
+            stClientRecord += Client.AccountNumber() + Seperator;
+            stClientRecord += Client.PinCode + Seperator;
+            stClientRecord += Convert.ToString(Client.AccountBalance);
 
-    }
+            return stClientRecord;
 
-    static clsBankClient _GetEmptyClientObject()
-    {
-        return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
-    }
-         
-         */
+        }
+
 
         // constructor
-        public clsBankClient(string FirstName, string LastName, string Email, string Phone, enMode Mode, string AccountNumber, string PinCode, float AccountBalance) : base(FirstName, LastName, Email, Phone)
+        public clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone, string AccountNumber, string PinCode, float AccountBalance) : base(FirstName, LastName, Email, Phone)
         {
             _Mode = Mode;
             _AccountNumber = AccountNumber;
@@ -98,12 +103,12 @@ namespace Bank_System
                 {
                     FileStream FS = File.OpenRead(PathName);
                     StreamReader SR = new StreamReader(FS,Encoding.UTF8);
-                    string line;
-                    while ((line = SR.ReadLine()) != null)
+                    string Line;
+                    while ((Line = SR.ReadLine()) != null)
                     {
                         // Process line
                         clsBankClient Client = _ConvertLinetoClientObject(Line);
-                        line
+                        Line
                     }
                     
                     return

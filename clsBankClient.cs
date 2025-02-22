@@ -76,7 +76,7 @@ namespace Bank_System
             get => _AccountBalance;
             set => _AccountBalance = value;
         }
-        override public void Print()
+        public void Print()
         {
 
             Console.WriteLine("Client Card:");
@@ -92,6 +92,8 @@ namespace Bank_System
             Console.WriteLine("____________________________\n");
         }
         
+
+        /*
         static clsBankClient Find(string AccountNumber )
         {
 
@@ -117,7 +119,7 @@ namespace Bank_System
                 catch(Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
-                    return
+                    return 
                 }
             }
             else
@@ -128,7 +130,7 @@ namespace Bank_System
 
             return 
         }
-        
+        */
     
     }
 }

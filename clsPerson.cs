@@ -29,7 +29,6 @@ namespace Bank_System
             _Email = "";
             _Phone = "";
         }
-        
 
         // getters and setters for private fields
         public string FirstName
@@ -53,9 +52,22 @@ namespace Bank_System
             set => _Phone = value;
         }
 
-        
-        
-        
+        public string FullName()
+        {
+            return _FirstName + " " + _LastName;
+        }
 
+        public void Print()
+        {
+            Console.WriteLine("\nInfo:");
+            Console.WriteLine("\n___________________");
+            Console.WriteLine($"\nFirstName:    {_FirstName}");
+            Console.WriteLine($"\nLastName :    {_LastName}");
+            Console.WriteLine($"\nFull Name:    {FullName()}");
+            Console.WriteLine($"\nEmail    :    {_Email}");
+            Console.WriteLine($"\nPhone    :    {_Phone}");
+            Console.WriteLine($"\n__________________\n");
+
+        }
     }
 }

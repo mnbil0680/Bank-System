@@ -340,130 +340,105 @@ namespace Bank_System
             _Value = Trim(_Value);
         }
 
-        /*
 
-
-
-static string JoinString(vector<string> vString, string Delim)
-{
-
-    string S1 = "";
-
-    for (string & s : vString)
+        public static string JoinString(List<string> vString, string Delim)
         {
-            S1 = S1 + s + Delim;
-        }
+            if (vString.Count == 0)
+                return "";
 
-        return S1.substr(0, S1.length() - Delim.length());
+            string S1 = "";
 
-
-    }
-
-    static string JoinString(string arrString[], short Length, string Delim)
-{
-
-    string S1 = "";
-
-    for (short i = 0; i < Length; i++)
-    {
-        S1 = S1 + arrString[i] + Delim;
-    }
-
-    return S1.substr(0, S1.length() - Delim.length());
-
-}
-
-static string ReverseWordsInString(string S1)
-{
-
-    vector<string> vString;
-    string S2 = "";
-
-    vString = Split(S1, " ");
-
-    // declare iterator
-    vector<string>::iterator iter = vString.end();
-
-    while (iter != vString.begin())
-    {
-
-        --iter;
-
-        S2 += *iter + " ";
-
-    }
-
-    S2 = S2.substr(0, S2.length() - 1); //remove last space.
-
-    return S2;
-}
-
-void ReverseWordsInString()
-{
-    _Value = ReverseWordsInString(_Value);
-}
-
-static string ReplaceWord(string S1, string StringToReplace, string sRepalceTo, bool MatchCase = true)
-{
-
-    vector<string> vString = Split(S1, " ");
-
-    for (string & s : vString)
-        {
-
-            if (MatchCase)
+            foreach (string s in vString)
             {
-                if (s == StringToReplace)
-                {
-                    s = sRepalceTo;
-                }
-
+                S1 += s + Delim;
             }
-            else
-{
-    if (LowerAllString(s) == LowerAllString(StringToReplace))
-    {
-        s = sRepalceTo;
-    }
 
-}
-
+            return S1.Substring(0, S1.Length - Delim.Length); // Remove last delimiter
         }
 
-        return JoinString(vString, " ");
-    }
-
-    string ReplaceWord(string StringToReplace, string sRepalceTo)
-{
-    return ReplaceWord(_Value, StringToReplace, sRepalceTo);
-}
-
-static string RemovePunctuations(string S1)
-{
-
-    string S2 = "";
-
-    for (short i = 0; i < S1.length(); i++)
-    {
-        if (!ispunct(S1[i]))
+        public static string JoinString(string[] arrString, short Length, string Delim)
         {
-            S2 += S1[i];
+            if (Length == 0)
+                return "";
+
+            string S1 = "";
+
+            for (short i = 0; i < Length; i++)
+            {
+                S1 += arrString[i] + Delim;
+            }
+
+            return S1.Substring(0, S1.Length - Delim.Length); // Remove last delimiter
         }
-    }
 
-    return S2;
+       
+        public static List<string> split(string S1, string Delim)
+        {
+            return new List<string>(S1.Split(new string[] { Delim }, StringSplitOptions.None));
+        }
 
-}
+        public static string ReverseWordsInString(string S1)
+        {
+            List<string> words = split(S1, " ");
+            words.Reverse(); // Reverse the order of words
+            return string.Join(" ", words);
+        }
 
-void RemovePunctuations()
-{
-    _Value = RemovePunctuations(_Value);
-}
+        public void ReverseWordsInString()
+        {
+            _Value = ReverseWordsInString(_Value);
+        }
+
+        public static string ReplaceWord(string S1, string StringToReplace, string sReplaceTo, bool MatchCase = true)
+        {
+            List<string> words = Split(S1, " ");
+
+            for (int i = 0; i < words.Count; i++)
+            {
+                if (MatchCase)
+                {
+                    if (words[i] == StringToReplace)
+                    {
+                        words[i] = sReplaceTo;
+                    }
+                }
+                else
+                {
+                    if (LowerAllString(words[i]) == LowerAllString(StringToReplace))
+                    {
+                        words[i] = sReplaceTo;
+                    }
+                }
+            }
+
+            return JoinString(words, " ");
+        }
+
+        public string ReplaceWord(string StringToReplace, string sRepalceTo)
+        {
+            return ReplaceWord(_Value, StringToReplace, sRepalceTo);
+        }
+
+        public static string RemovePunctuations(string S1)
+        {
+            StringBuilder S2 = new StringBuilder();
+
+            foreach (char ch in S1)
+            {
+                if (!char.IsPunctuation(ch)) // Check if character is not punctuation
+                {
+                    S2.Append(ch);
+                }
+            }
+
+            return S2.ToString();
+        }
 
 
-};
-
-
-*/
+        public void RemovePunctuations()
+        {
+            _Value = RemovePunctuations(_Value);
+        }
+     
     }
 }

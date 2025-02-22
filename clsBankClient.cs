@@ -12,7 +12,7 @@ namespace Bank_System
 {
     internal class clsBankClient : clsPerson
     {
-        internal enum enMode { EmptyMode, UpdateMode }
+        internal enum enMode { EmptyMode, UpdateMode, AddNewMode }
         private enMode _Mode;
         private string _AccountNumber;
         private string _PinCode;
@@ -156,23 +156,24 @@ namespace Bank_System
         {
             // path of the file that we want to create
             string PathName = @"D:\Bank System\Clients.txt";
-            FileStream FS = System.IO.File.OpenRead(PathName);
-            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+          
+                    
             if (System.IO.File.Exists(PathName))
             {
                 try
                 {
                     
+                    // write but clear all content
 
-                    System.IO.File.WriteAllText(PathName, stDataLine);
+                    System.IO.File.AppendAllText(PathName, '\n'+stDataLine );
 
-                    FS.Close();
+                    
 
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine($"There is an Error :{e.Message}");
-                    FS.Close();
+                   
                 }
             }
             else
@@ -185,6 +186,10 @@ namespace Bank_System
 
         }
 
+        private void _AddNew()
+        {
+            _AddDataLineToFile(_ConverClientObjectToLine(this));
+        }
 
         // constructor
         public clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone, string AccountNumber, string PinCode, float AccountBalance) : base(FirstName, LastName, Email, Phone)
@@ -334,7 +339,7 @@ namespace Bank_System
             return (!Client1.IsEmpty());
         }
 
-        public enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1 };
+        public enum enSaveResults { svFaildEmptyObject , svSucceeded, svFaildAccountNumberExists };
 
         public enSaveResults Save()
         {
@@ -353,8 +358,30 @@ namespace Bank_System
 
                         return enSaveResults.svSucceeded;
                     }
+                case enMode.AddNewMode:
+                    {
+                        if (clsBankClient.IsClientExist(_AccountNumber))
+                        {
+                            return enSaveResults.svFaildAccountNumberExists;
+                        }
+                        else
+                        {
+                            _AddNew();
+                            _Mode = enMode.UpdateMode;
+                            return enSaveResults.svSucceeded;
+
+
+                        }
+                        break;
+                    }
             }
             return enSaveResults.svFaildEmptyObject;
         }
+
+        public static clsBankClient GetAddNewClientObject(string AccountNumber)
+        {
+            return new clsBankClient(enMode.AddNewMode,"","","","",AccountNumber,"",0);
+        }
+
     }
 }

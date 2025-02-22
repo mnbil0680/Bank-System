@@ -27,7 +27,7 @@ namespace Bank_System
     Client.AccountBalance =  (float)clsInputValidate.ReadDbNumber();
 }
 
-static void UpdateClient()
+        static void UpdateClient()
 {
     string accountNumber;
 
@@ -62,11 +62,45 @@ static void UpdateClient()
             break;
     }
 }
+        static void AddNewClient()
+        {
+            string AccountNumber = "";
 
+            Console.WriteLine("Please Enter Account Number: ");
+
+            AccountNumber = clsInputValidate.ReadString();
+
+            while (clsBankClient.IsClientExist(AccountNumber))
+            {
+                Console.WriteLine("Account Number is already used, Choose another one: ");
+                AccountNumber = clsInputValidate.ReadString();
+            }
+
+            clsBankClient NewClient = clsBankClient.GetAddNewClientObject(AccountNumber);
+
+            ReadClientInfo(NewClient);
+
+            clsBankClient.enSaveResults SaveResult;
+
+            SaveResult = NewClient.Save();
+
+            switch (SaveResult)
+            {
+                case clsBankClient.enSaveResults.svSucceeded:
+                    Console.WriteLine("Account added successfully :-)\n");
+                    NewClient.Print();
+                    break;
+                case clsBankClient.enSaveResults.svFaildEmptyObject:
+                    Console.WriteLine("Error account was not saved because it's Empty");
+                    break;
+                case clsBankClient.enSaveResults.svFaildAccountNumberExists:
+                    Console.WriteLine("Account Number is already used");
+                    break;
+            }
+        }
         static void Main(string[] args)
         {
-
-            UpdateClient();
+            AddNewClient();
             
         }
     }

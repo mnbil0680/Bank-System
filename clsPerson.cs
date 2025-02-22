@@ -57,16 +57,16 @@ namespace Bank_System
             return _FirstName + " " + _LastName;
         }
 
-        public void Print()
+        public virtual void Print()
         {
-            Console.WriteLine("\nInfo:");
-            Console.WriteLine("\n___________________");
-            Console.WriteLine($"\nFirstName:    {_FirstName}");
-            Console.WriteLine($"\nLastName :    {_LastName}");
-            Console.WriteLine($"\nFull Name:    {FullName()}");
-            Console.WriteLine($"\nEmail    :    {_Email}");
-            Console.WriteLine($"\nPhone    :    {_Phone}");
-            Console.WriteLine($"\n__________________\n");
+            Console.WriteLine("Info:");
+            Console.WriteLine("____________________________");
+            Console.WriteLine($"FirstName:    {_FirstName}");
+            Console.WriteLine($"LastName :    {_LastName}");
+            Console.WriteLine($"Full Name:    {FullName()}");
+            Console.WriteLine($"Email    :    {_Email}");
+            Console.WriteLine($"Phone    :    {_Phone}");
+            Console.WriteLine($"___________________________");
 
         }
     }

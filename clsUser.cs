@@ -384,6 +384,15 @@ namespace Bank_System
         {
             return _UserName;
         }
+
+        bool CheckAccessPermission(enPermissions Permission)
+        {
+            if (this.Permissions == (int)enPermissions.eAll)
+                return true;
+
+            return ( (int)Permission & this.Permissions) == (int)Permission;
+        }
+
     }
 
 }

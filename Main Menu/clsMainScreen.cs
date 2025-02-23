@@ -59,8 +59,13 @@ namespace Bank_System
         {
             clsMangeUsers.ShowManageUsersMenue();
         }
-        private static void _ShowEndScreen() => Console.WriteLine("\nEnd Screen Will be here...");
 
+        private static void _Logout()
+        {
+            clsGlobal.CurrentUser = clsUser.Find("", "");
+            
+            //then it will go back to main function.
+        }
         private static void _PerformMainMenuOption(enMainMenueOptions mainMenuOption)
         {
             Console.Clear();
@@ -95,7 +100,8 @@ namespace Bank_System
                     _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.Exit:
-                    _ShowEndScreen();
+                    Console.Clear();
+                    _Logout();
                     break;
             }
         }

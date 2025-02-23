@@ -135,9 +135,52 @@ namespace Bank_System
 
         }
 
+        public static void PrintClientRecordLine(clsBankClient client)
+        {
+            Console.WriteLine($"| {client.AccountNumber(),-15}" +
+                              $"| {client.FullName(),-20}" +
+                              $"| {client.Phone,-12}" +
+                              $"| {client.Email,-20}" +
+                              $"| {client.PinCode,-10}" +
+                              $"| {client.AccountBalance,-12}");
+        }
+
+        public static void ShowClientsList()
+        {
+            List<clsBankClient> clients = clsBankClient.GetClientsList();
+
+            Console.WriteLine($"\n\t\t\t\t\tClient List ({clients.Count}) Client(s).");
+            Console.WriteLine("________________________________________________________________________________________________\n");
+
+            Console.WriteLine($"| {"Account Number",-15}" +
+                              $"| {"Client Name",-20}" +
+                              $"| {"Phone",-12}" +
+                              $"| {"Email",-20}" +
+                              $"| {"Pin Code",-10}" +
+                              $"| {"Balance",-12}");
+
+            Console.WriteLine("________________________________________________________________________________________________\n");
+
+            // if no clients
+            if (clients.Count == 0)
+            {
+                Console.WriteLine("\t\t\t\tNo Clients Available In the System!");
+            }
+            else
+            {
+                foreach (var client in clients)
+                {
+                    PrintClientRecordLine(client);
+                    
+                }
+            }
+
+            Console.WriteLine("________________________________________________________________________________________________\n");
+        }
+
         static void Main(string[] args)
         {
-            DeleteClient();
+            ShowClientsList();
 
 
         }

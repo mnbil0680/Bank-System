@@ -426,5 +426,10 @@ namespace Bank_System
             return true;
         }
 
+        public static List<clsBankClient> GetClientsList()
+        {
+            return _LoadClientsDataFromFile();
+        }
+
     }
 }

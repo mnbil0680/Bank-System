@@ -34,7 +34,7 @@ namespace Bank_System
 
         private static void _ShowTotalBalancesScreen()
         {
-            Console.WriteLine("\nBalances Screen will be here.\n");
+            clsWithdrawScreen.ShowWithdrawScreen();
         }
 
         private static void _GoBackToTransactionsMenu()

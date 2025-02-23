@@ -443,11 +443,7 @@ namespace Bank_System
             Save();
         }
 
-        //void Withdraw(double Amount)
-        //{
-        //    _AccountBalance -= (float)Amount;
-        //    Save();
-        //}
+        
 
         public bool Withdraw(double Amount)
         {

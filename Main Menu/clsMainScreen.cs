@@ -55,7 +55,10 @@ namespace Bank_System
         {
             clsTransactionsScreen.ShowTransactionsMenu();
         }
-        private static void _ShowManageUsersMenu() => Console.WriteLine("\nUsers Menu Will be here...");
+        private static void _ShowManageUsersMenu() 
+        {
+            clsMangeUsers.ShowManageUsersMenue();
+        }
         private static void _ShowEndScreen() => Console.WriteLine("\nEnd Screen Will be here...");
 
         private static void _PerformMainMenuOption(enMainMenueOptions mainMenuOption)

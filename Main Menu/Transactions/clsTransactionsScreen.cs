@@ -34,7 +34,7 @@ namespace Bank_System
 
         private static void _ShowTotalBalancesScreen()
         {
-            clsWithdrawScreen.ShowWithdrawScreen();
+            clsTotalBalancesScreen.ShowTotalBalances();
         }
 
         private static void _GoBackToTransactionsMenu()
@@ -46,22 +46,26 @@ namespace Bank_System
 
         private static void _PerformTransactionsMenuOption(enTransactionsMenuOptions transactionOption)
         {
-            Console.Clear();
+            
             switch (transactionOption)
             {
                 case enTransactionsMenuOptions.Deposit:
+                    Console.Clear();
                     _ShowDepositScreen();
                     _GoBackToTransactionsMenu();
                     break;
                 case enTransactionsMenuOptions.Withdraw:
+                    Console.Clear();
                     _ShowWithdrawScreen();
                     _GoBackToTransactionsMenu();
                     break;
                 case enTransactionsMenuOptions.ShowTotalBalance:
+                    Console.Clear();
                     _ShowTotalBalancesScreen();
                     _GoBackToTransactionsMenu();
                     break;
                 case enTransactionsMenuOptions.ShowMainMenu:
+
                     // Main menu will handle this case
                     break;
             }

@@ -24,12 +24,11 @@ namespace Bank_System
 
             _DrawScreenHeader(Title, SubTitle);
 
-            Console.WriteLine("\n\t\t_______________________________________________________");
-            Console.WriteLine("__________________________\n");
+            Console.WriteLine("\n______________________________________________________________________________");
 
-            Console.WriteLine("\t\t| Accout Number  | Client Name                               | Balance       |");
-            Console.WriteLine("\t\t_______________________________________________________");
-            Console.WriteLine("__________________________\n");
+            Console.WriteLine("| Accout Number  | Client Name                               | Balance       |");
+            Console.WriteLine("______________________________________________________________________________");
+
 
             double TotalBalances = clsBankClient.GetTotalBalances();
 
@@ -43,8 +42,8 @@ namespace Bank_System
                 }
             }
 
-            Console.WriteLine("\n\t\t_______________________________________________________");
-            Console.WriteLine("__________________________\n");
+            Console.WriteLine("_______________________________________________________________________________\n");
+           
 
             Console.WriteLine($"\t\t\t\t\t\t     Total Balances = {TotalBalances}");
             Console.WriteLine($"\t\t\t\t  ( {clsUtil.NumberToText((int)TotalBalances)} )");

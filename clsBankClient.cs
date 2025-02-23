@@ -437,5 +437,19 @@ namespace Bank_System
             return clients.Sum(client => client.AccountBalance);
         }
 
+        public void Deposit(double Amount)
+        {
+            _AccountBalance += (float)Amount;
+            Save();
+        }
+
+        void Withdraw(double Amount)
+        {
+            _AccountBalance -= (float)Amount;
+            Save();
+        }
+
+
     }
+
 }

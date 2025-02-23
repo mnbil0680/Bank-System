@@ -47,8 +47,14 @@ namespace Bank_System
         {
             clsUpdateClientScreen.ShowUpdateClientScreen();
         }
-        private static void _ShowFindClientScreen() => Console.WriteLine("\nFind Client Screen Will be here...");
-        private static void _ShowTransactionsMenu() => Console.WriteLine("\nTransactions Menu Will be here...");
+        private static void _ShowFindClientScreen() 
+        {
+            clsFindClientScreen.ShowFindClientScreen();
+        } 
+        private static void _ShowTransactionsMenu()
+        {
+            clsTransactionsScreen.ShowTransactionsMenu();
+        }
         private static void _ShowManageUsersMenu() => Console.WriteLine("\nUsers Menu Will be here...");
         private static void _ShowEndScreen() => Console.WriteLine("\nEnd Screen Will be here...");
 

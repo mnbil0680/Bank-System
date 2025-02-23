@@ -9,7 +9,7 @@ namespace Bank_System
     internal class clsMainScreen : clsScreen
     {
 
-  
+
 
         private enum enMainMenueOptions
         {
@@ -30,9 +30,19 @@ namespace Bank_System
             ShowMainMenu();
         }
 
-        private static void _ShowAllClientsScreen() => Console.WriteLine("\nClient List Screen Will be here...");
-        private static void _ShowAddNewClientsScreen() => Console.WriteLine("\nAdd New Client Screen Will be here...");
-        private static void _ShowDeleteClientScreen() => Console.WriteLine("\nDelete Client Screen Will be here...");
+        private static void _ShowAllClientsScreen()
+        {
+            //Console.WriteLine("\nClient List Screen Will be here...");
+            clsClientListScreen.ShowClientsList();
+        }
+        private static void _ShowAddNewClientsScreen()
+        {
+            clsAddNewClientScreen.ShowAddNewClientScreen();
+        }
+        private static void _ShowDeleteClientScreen()
+        {
+            clsDeleteClientScreen.ShowDeleteClientScreen();
+        }
         private static void _ShowUpdateClientScreen() => Console.WriteLine("\nUpdate Client Screen Will be here...");
         private static void _ShowFindClientScreen() => Console.WriteLine("\nFind Client Screen Will be here...");
         private static void _ShowTransactionsMenu() => Console.WriteLine("\nTransactions Menu Will be here...");
@@ -81,7 +91,7 @@ namespace Bank_System
         public static void ShowMainMenu()
         {
             Console.Clear();
-            _DrawScreenHeader("Main Screen");
+            _DrawScreenHeader("\t\tMain Screen");
 
             Console.WriteLine("\t\t\t\t\t===========================================");
             Console.WriteLine("\t\t\t\t\t\t\tMain Menu");

@@ -11,11 +11,11 @@ namespace Bank_System
         protected static void _DrawScreenHeader(string title, string subTitle = "")
         {
             Console.WriteLine("\t\t\t\t\t______________________________________");
-            Console.WriteLine($"\n\n\t\t\t\t\t\t  {title}");
+            Console.WriteLine($"\n\n\t\t\t\t\t  {title}");
 
             if (!string.IsNullOrEmpty(subTitle))
             {
-                Console.WriteLine($"\n\t\t\t\t\t\t  {subTitle}");
+                Console.WriteLine($"\n\t\t\t\t\t  {subTitle}");
             }
 
             Console.WriteLine("\n\t\t\t\t\t______________________________________\n\n");

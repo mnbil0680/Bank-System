@@ -129,12 +129,6 @@ namespace Bank_System
         {
             return number >= from && number <= to;
         }
-    
-
-
-
-
-
-
+   
 }
 }

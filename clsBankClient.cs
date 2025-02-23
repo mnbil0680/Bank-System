@@ -75,7 +75,7 @@ namespace Bank_System
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"There is an Error :{e.Message}");
+                   
                     FS.Close();
                     return lClients;
 
@@ -130,7 +130,7 @@ namespace Bank_System
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"There is an Error :{e.Message}");
+                   
                    
                 }
             }
@@ -176,7 +176,7 @@ namespace Bank_System
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"There is an Error :{e.Message}");
+                    
                    
                 }
             }
@@ -292,7 +292,7 @@ namespace Bank_System
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"There is an Error :{e.Message}");
+                    
                     FS.Close();
                     return _GetEmptyClientObject();
 
@@ -337,7 +337,7 @@ namespace Bank_System
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"There is an Error :{e.Message}");
+                   
                     FS.Close();
                     return _GetEmptyClientObject();
 

@@ -17,61 +17,63 @@ namespace Bank_System
             FindClient, ShowTransactionsMenu, ManageUsers, Exit
         }
 
-        private static short ReadMainMenuOption()
+        private static short _ReadMainMenuOption()
         {
             Console.Write("\nChoose what do you want to do? [1 to 8]: ");
             return clsInputValidate.ReadShortNumberBetween(1, 8, "Enter a number between 1 and 8: ");
         }
 
-        private static void GoBackToMainMenu()
+        private static void _GoBackToMainMenu()
         {
             Console.WriteLine("\nPress any key to go back to Main Menu...");
             Console.ReadKey();
             ShowMainMenu();
         }
 
-        private static void ShowAllClientsScreen() => Console.WriteLine("\nClient List Screen Will be here...");
-        private static void ShowAddNewClientsScreen() => Console.WriteLine("\nAdd New Client Screen Will be here...");
-        private static void ShowDeleteClientScreen() => Console.WriteLine("\nDelete Client Screen Will be here...");
-        private static void ShowUpdateClientScreen() => Console.WriteLine("\nUpdate Client Screen Will be here...");
-        private static void ShowFindClientScreen() => Console.WriteLine("\nFind Client Screen Will be here...");
-        private static void ShowTransactionsMenu() => Console.WriteLine("\nTransactions Menu Will be here...");
-        private static void ShowManageUsersMenu() => Console.WriteLine("\nUsers Menu Will be here...");
-        private static void ShowEndScreen() => Console.WriteLine("\nEnd Screen Will be here...");
+        private static void _ShowAllClientsScreen() => Console.WriteLine("\nClient List Screen Will be here...");
+        private static void _ShowAddNewClientsScreen() => Console.WriteLine("\nAdd New Client Screen Will be here...");
+        private static void _ShowDeleteClientScreen() => Console.WriteLine("\nDelete Client Screen Will be here...");
+        private static void _ShowUpdateClientScreen() => Console.WriteLine("\nUpdate Client Screen Will be here...");
+        private static void _ShowFindClientScreen() => Console.WriteLine("\nFind Client Screen Will be here...");
+        private static void _ShowTransactionsMenu() => Console.WriteLine("\nTransactions Menu Will be here...");
+        private static void _ShowManageUsersMenu() => Console.WriteLine("\nUsers Menu Will be here...");
+        private static void _ShowEndScreen() => Console.WriteLine("\nEnd Screen Will be here...");
 
-        private static void PerformMainMenuOption(enMainMenueOptions mainMenuOption)
+        private static void _PerformMainMenuOption(enMainMenueOptions mainMenuOption)
         {
             Console.Clear();
             switch (mainMenuOption)
             {
                 case enMainMenueOptions.ListClients:
-                    ShowAllClientsScreen();
-                    GoBackToMainMenu();
+                    _ShowAllClientsScreen();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.AddNewClient:
-                    ShowAddNewClientsScreen();
-                    GoBackToMainMenu();
+                    _ShowAddNewClientsScreen();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.DeleteClient:
-                    ShowDeleteClientScreen();
-                    GoBackToMainMenu();
+                    _ShowDeleteClientScreen();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.UpdateClient:
-                    ShowUpdateClientScreen();
-                    GoBackToMainMenu();
+                    _ShowUpdateClientScreen();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.FindClient:
-                    ShowFindClientScreen();
-                    GoBackToMainMenu();
+                    _ShowFindClientScreen();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.ShowTransactionsMenu:
-                    ShowTransactionsMenu();
+                    _ShowTransactionsMenu();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.ManageUsers:
-                    ShowManageUsersMenu();
+                    _ShowManageUsersMenu();
+                    _GoBackToMainMenu();
                     break;
                 case enMainMenueOptions.Exit:
-                    ShowEndScreen();
+                    _ShowEndScreen();
                     break;
             }
         }
@@ -94,7 +96,7 @@ namespace Bank_System
             Console.WriteLine("\t\t\t\t\t[8] Logout.");
             Console.WriteLine("\t\t\t\t\t===========================================\n");
 
-            PerformMainMenuOption((enMainMenueOptions)ReadMainMenuOption());
+            _PerformMainMenuOption((enMainMenueOptions)_ReadMainMenuOption());
         }
     }
 

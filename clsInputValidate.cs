@@ -101,9 +101,40 @@ namespace Bank_System
             return Console.ReadLine()?.Trim() ?? "";
         }
 
-       
+
+    
+        public static short ReadShortNumber(string errorMessage = "Invalid Number, Enter again\n")
+        {
+            short number;
+            while (!short.TryParse(Console.ReadLine(), out number))
+            {
+                Console.WriteLine(errorMessage);
+            }
+            return number;
+        }
+
+        public static short ReadShortNumberBetween(short from, short to, string errorMessage = "Number is not within range, Enter again:\n")
+        {
+            short number = ReadShortNumber();
+
+            while (!IsNumberBetween(number, from, to))
+            {
+                Console.WriteLine(errorMessage);
+                number = ReadShortNumber();
+            }
+            return number;
+        }
+
+        private static bool IsNumberBetween(short number, short from, short to)
+        {
+            return number >= from && number <= to;
+        }
+    
 
 
 
-    }
+
+
+
+}
 }

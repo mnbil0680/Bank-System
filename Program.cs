@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Threading.Channels;
 using static Bank_System.clsInputValidate;
+using System.Collections.Generic;
 
 
 namespace Bank_System
@@ -178,9 +179,52 @@ namespace Bank_System
             Console.WriteLine("________________________________________________________________________________________________\n");
         }
 
-        static void Main(string[] args)
+
+        public static void ShowTotalBalances()
         {
-            ShowClientsList();
+            List<clsBankClient> clients = clsBankClient.GetClientsList();
+
+            Console.WriteLine($"\n\t\t\t\t\tBalances List ({clients.Count}) Client(s).");
+            Console.WriteLine("__________________________________________________________________________________________\n");
+
+            Console.WriteLine($"| {"Account Number",-15}" +
+                              $"| {"Client Name",-40}" +
+                              $"| {"Balance",-12}");
+
+            Console.WriteLine("__________________________________________________________________________________________\n");
+
+            double totalBalances = clsBankClient.GetTotalBalances();
+
+            if (clients.Count == 0)
+            {
+                Console.WriteLine("\t\t\t\tNo Clients Available In the System!");
+            }
+            else
+            {
+                foreach (var client in clients)
+                {
+                    PrintClientRecordBalanceLine(client);
+                   
+                }
+            }
+
+            Console.WriteLine("__________________________________________________________________________________________\n");
+            Console.WriteLine($"\t\t\t\t\t   Total Balances = {totalBalances}");
+            Console.WriteLine($"\t\t\t\t\t   ( {clsUtil.NumberToText((int)totalBalances)} )");
+        }
+
+        public static void PrintClientRecordBalanceLine(clsBankClient client)
+        {
+            Console.WriteLine($"| {client.AccountNumber(),-15}" +
+                              $"| {client.FullName(),-40}" +
+                              $"| {client.AccountBalance,-12}");
+        }
+    
+
+
+    static void Main(string[] args)
+        {
+            clsMainScreen.ShowMainMenu();
 
 
         }

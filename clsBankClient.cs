@@ -431,5 +431,11 @@ namespace Bank_System
             return _LoadClientsDataFromFile();
         }
 
+        public static double GetTotalBalances()
+        {
+            List<clsBankClient> clients = clsBankClient.GetClientsList();
+            return clients.Sum(client => client.AccountBalance);
+        }
+
     }
 }

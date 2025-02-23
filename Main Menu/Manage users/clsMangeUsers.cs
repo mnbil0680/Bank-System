@@ -38,22 +38,22 @@ namespace Bank_System
 
         private static void _ShowAddNewUserScreen()
         {
-            Console.WriteLine("\nAdd New User Screen Will Be Here.");
+            clsAddNewUserScreen.ShowAddNewUserScreen();
         }
 
         private static void _ShowDeleteUserScreen()
         {
-            Console.WriteLine("\nDelete User Screen Will Be Here.");
+            clsDeleteUserScreen.ShowDeleteUserScreen();
         }
 
         private static void _ShowUpdateUserScreen()
         {
-            Console.WriteLine("\nUpdate User Screen Will Be Here.");
+            clsUpdateUserScreen.ShowUpdateUserScreen();
         }
 
         private static void _ShowFindUserScreen()
         {
-            Console.WriteLine("\nFind User Screen Will Be Here.");
+            clsFindUserScreen.ShowFindUserScreen();
         }
 
         private static void _PerformManageUsersMenueOption(enManageUsersMenueOptions ManageUsersMenueOption)

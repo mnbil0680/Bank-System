@@ -26,11 +26,11 @@ namespace Bank_System
             string title = "\t  User List Screen";
             string subTitle = $"\t    ({users.Count}) User(s).";
 
-            DrawScreenHeader(title, subTitle);
+            _DrawScreenHeader(title, subTitle);
 
-            Console.WriteLine("\n\t_______________________________________________________________________________________________");
-            Console.WriteLine("\t| UserName    | Full Name               | Phone       | Email               | Password  | Permissions  |");
-            Console.WriteLine("\t-----------------------------------------------------------------------------------------------");
+            Console.WriteLine("\n________________________________________________________________________________________________________");
+            Console.WriteLine("| UserName    | Full Name               | Phone       | Email               | Password  | Permissions  |");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
 
             if (users.Count == 0)
             {
@@ -44,15 +44,10 @@ namespace Bank_System
                 }
             }
 
-            Console.WriteLine("\t_______________________________________________________________________________________________\n");
+            Console.WriteLine("________________________________________________________________________________________________________\n");
         }
 
-        private static void DrawScreenHeader(string title, string subTitle)
-        {
-            Console.WriteLine(title);
-            Console.WriteLine(subTitle);
-            Console.WriteLine(new string('-', 80));
-        }
+        
     }
 
 }

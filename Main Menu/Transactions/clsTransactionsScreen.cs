@@ -24,12 +24,12 @@ namespace Bank_System
 
         private static void _ShowDepositScreen()
         {
-            clsDeleteClientScreen.ShowDeleteClientScreen();
+            clsDepositScreen.ShowDepositScreen();
         }
 
         private static void _ShowWithdrawScreen()
         {
-            Console.WriteLine("\nWithdraw Screen will be here.\n");
+            clsWithdrawScreen.ShowWithdrawScreen();
         }
 
         private static void _ShowTotalBalancesScreen()

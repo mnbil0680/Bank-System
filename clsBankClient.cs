@@ -17,6 +17,7 @@ namespace Bank_System
         private string _AccountNumber;
         private string _PinCode;
         private float _AccountBalance;
+        private bool _MarkedForDelete = false;
 
         private static clsBankClient _ConvertLinetoClientObject(string Line, string Seperator = "#//#")
         {
@@ -105,6 +106,9 @@ namespace Bank_System
                     System.IO.File.WriteAllText(PathName, String.Empty);
                     foreach (clsBankClient C in lClients)
                     {
+                        if (C.MarkedForDeleted() == false)
+                        { 
+                        
                         DataLine += "\n";
                         DataLine = _ConverClientObjectToLine(C);
 
@@ -118,8 +122,8 @@ namespace Bank_System
                             }
                         }
 
-                       
 
+                        }
                     }
 
 
@@ -191,6 +195,21 @@ namespace Bank_System
             _AddDataLineToFile(_ConverClientObjectToLine(this));
         }
 
+        private void _CopyFrom(clsBankClient other)
+        {
+            if (other == null) return; // Avoid null reference errors
+
+            this._AccountNumber = other._AccountNumber;
+            this.FirstName = other.FirstName;
+            this.LastName = other.LastName;
+            this.Email = other.Email;
+            this.Phone = other.Phone;
+            this.PinCode = other.PinCode;
+            this.AccountBalance = other.AccountBalance;
+            this._MarkedForDelete = other._MarkedForDelete;
+        }
+
+
         // constructor
         public clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone, string AccountNumber, string PinCode, float AccountBalance) : base(FirstName, LastName, Email, Phone)
         {
@@ -204,6 +223,10 @@ namespace Bank_System
         public bool IsEmpty()
         {
             return _Mode == enMode.EmptyMode;
+        }
+        bool MarkedForDeleted()
+        {
+            return _MarkedForDelete;
         }
 
         public string AccountNumber()
@@ -381,6 +404,26 @@ namespace Bank_System
         public static clsBankClient GetAddNewClientObject(string AccountNumber)
         {
             return new clsBankClient(enMode.AddNewMode,"","","","",AccountNumber,"",0);
+        }
+
+        public bool Delete()
+        {
+            List<clsBankClient> _lClients = _LoadClientsDataFromFile(); 
+
+            foreach (clsBankClient c in _lClients )
+            {
+                if (c.AccountNumber() == _AccountNumber )
+                {
+                    c._MarkedForDelete = true;
+                    break;
+                }
+            }
+            _SaveCleintsDataToFile(_lClients);
+            this._CopyFrom(_GetEmptyClientObject());
+
+
+
+            return true;
         }
 
     }

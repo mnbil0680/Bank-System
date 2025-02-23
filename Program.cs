@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Threading.Channels;
 using static Bank_System.clsInputValidate;
 
 
@@ -98,10 +99,47 @@ namespace Bank_System
                     break;
             }
         }
+
+        static void DeleteClient()
+        {
+            string AccountNumber = "";
+            Console.WriteLine("Please Enter the account number: ");
+            AccountNumber = clsInputValidate.ReadString();
+            while (!clsBankClient.IsClientExist(AccountNumber))
+            {
+                Console.WriteLine("Account Number is not found, choose another one");
+                AccountNumber = ReadString();
+            }
+            clsBankClient Client1 = clsBankClient.Find(AccountNumber);
+            Client1.Print();
+
+            Console.WriteLine("Are you sure you want to delete this client y/n");
+            string answer = "n";
+            answer = Console.ReadLine();
+            answer.ToLower();
+            if (answer == "y")
+            {
+                if (Client1.Delete())
+                {
+                    Console.WriteLine("Client deleted successfully");
+                    Client1.Print();
+
+                }
+                else
+                {
+                    Console.WriteLine("erro client was not deleted");
+                }
+
+            }
+
+
+        }
+
         static void Main(string[] args)
         {
-            AddNewClient();
-            
+            DeleteClient();
+
+
         }
     }
 }

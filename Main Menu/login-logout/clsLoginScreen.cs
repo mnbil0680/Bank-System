@@ -8,17 +8,33 @@ namespace Bank_System
 {
     internal class clsLoginScreen : clsScreen
     {
-        private static void _Login()
+        private static bool _Login()
         {
             bool loginFailed = false;
+            short FaildLoginCount = 0;
             string username, password;
 
             do
             {
                 if (loginFailed)
                 {
-                    Console.WriteLine("\nInvalid Username/Password!\n");
+                    FaildLoginCount++;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nInvalid Username/Password!");
+                    Console.WriteLine($"You have {3 - FaildLoginCount} trial(s) left to login.\n");
+                    Console.ResetColor();
                 }
+
+                if (FaildLoginCount == 3)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\nYou are locked after 3 failed attempts.");
+                    Console.ResetColor();
+                    Console.WriteLine("\n\n");
+                    return false;
+                }
+
 
                 Console.Write("Enter Username: ");
                 username = Console.ReadLine().Trim();
@@ -33,6 +49,7 @@ namespace Bank_System
             } while (loginFailed);
 
             clsMainScreen.ShowMainMenu();
+            return true;
         }
 
         public static void ShowLoginScreen()

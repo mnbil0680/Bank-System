@@ -47,7 +47,7 @@ namespace Bank_System
                 loginFailed = clsGlobal.CurrentUser.IsEmpty;
 
             } while (loginFailed);
-
+            clsGlobal.CurrentUser.RegisterLogIn();
             clsMainScreen.ShowMainMenu();
             return true;
         }

@@ -129,7 +129,8 @@ namespace Bank_System
                     break;
                 case enMainMenueOptions.Exit:
                     Console.Clear();
-                    _Logout();
+                    clsGlobal.CurrentUser = clsUser.Find("", "");
+                    clsLoginScreen.ShowLoginScreen();
                     break;
             }
         }

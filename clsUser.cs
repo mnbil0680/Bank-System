@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -392,6 +394,48 @@ namespace Bank_System
 
             return ( (int)Permission & this.Permissions) == (int)Permission;
         }
+        string _PrepareLogInRecord(string Seperator = "#//#")
+        {
+            string LoginRecord = "";
+            LoginRecord += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) + Seperator;
+            LoginRecord += UserName + Seperator;
+            LoginRecord += Password + Seperator;
+            LoginRecord += Permissions.ToString();
+            return LoginRecord;
+        }
+        public void RegisterLogIn()
+        {
+            // path of the file that we want to create
+            string PathName = @"D:\Bank System\LoginRegister.txt";
+            string stDataLine = _PrepareLogInRecord();
+
+
+            if (System.IO.File.Exists(PathName))
+            {
+                try
+                {
+
+                    // write but clear all content
+
+                    System.IO.File.AppendAllText(PathName, '\n' + stDataLine);
+
+
+
+                }
+                catch (Exception e)
+                {
+
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, File Does not Exist ");
+            }
+
+
+        }
+
 
     }
 

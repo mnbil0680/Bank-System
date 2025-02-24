@@ -80,6 +80,9 @@ namespace Bank_System
             if (AskPermission("Manage Users"))
                 permissions |= (int)clsUser.enPermissions.pManageUsers;
 
+            if (AskPermission("Login Register"))
+                permissions |= (int)clsUser.enPermissions.pShowLogInRegister;
+
             return permissions;
         }
 

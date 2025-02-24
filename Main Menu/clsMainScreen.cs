@@ -89,6 +89,10 @@ namespace Bank_System
         }
         private static void _ShowLoginRegisterScreen()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsLoginRegisterScreen.ShowLoginRegisterScreen();
         }
         private static void _Logout()

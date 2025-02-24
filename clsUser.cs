@@ -192,14 +192,15 @@ namespace Bank_System
         public enum enPermissions
         {
             // Store Permissions in Binary system
-            eAll = -1,          // 1111111
-            pListClients = 1,   // 0000001
-            pAddNewClient = 2,  // 0000010
-            pDeleteClient = 4,  // 0000100
-            pUpdateClients = 8, // 0001000
-            pFindClient = 16,   // 0010000
-            pTranactions = 32,  // 0100000
-            pManageUsers = 64   // 1000000
+            eAll = -1,               // 11111111
+            pListClients = 1,        // 00000001
+            pAddNewClient = 2,       // 00000010
+            pDeleteClient = 4,       // 00000100
+            pUpdateClients = 8,      // 00001000
+            pFindClient = 16,        // 00010000
+            pTranactions = 32,       // 00100000
+            pManageUsers = 64,       // 01000000
+            pShowLogInRegister=128   // 10000000
         };
 
         public clsUser(enMode mode, string firstName, string lastName, string email,

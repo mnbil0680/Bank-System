@@ -20,8 +20,8 @@ namespace Bank_System
 
         private static short ReadTransactionsMenuOption()
         {
-            Console.Write("Choose what do you want to do? [1 to 5]? ");
-            return clsInputValidate.ReadShortNumberBetween(1, 5, "Enter Number between 1 to 5: ");
+            Console.Write("Choose what do you want to do? [1 to 6]? ");
+            return clsInputValidate.ReadShortNumberBetween(1, 6, "Enter Number between 1 to 6: ");
         }
 
         private static void _ShowDepositScreen()

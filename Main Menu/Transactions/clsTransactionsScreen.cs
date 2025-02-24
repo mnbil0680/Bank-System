@@ -13,13 +13,14 @@ namespace Bank_System
             Deposit = 1,
             Withdraw = 2,
             ShowTotalBalance = 3,
-            ShowMainMenu = 4
+            Transfer=4,
+            ShowMainMenu = 5
         }
 
         private static short ReadTransactionsMenuOption()
         {
-            Console.Write("Choose what do you want to do? [1 to 4]? ");
-            return clsInputValidate.ReadShortNumberBetween(1, 4, "Enter Number between 1 to 4: ");
+            Console.Write("Choose what do you want to do? [1 to 5]? ");
+            return clsInputValidate.ReadShortNumberBetween(1, 5, "Enter Number between 1 to 5: ");
         }
 
         private static void _ShowDepositScreen()
@@ -60,6 +61,11 @@ namespace Bank_System
             ShowTransactionsMenu();
         }
 
+        private static void _ShowTransferScreen()
+        {
+            clsTransferScreen.ShowTransferScreen();
+        }
+        
         private static void _PerformTransactionsMenuOption(enTransactionsMenuOptions transactionOption)
         {
             
@@ -80,6 +86,11 @@ namespace Bank_System
                     _ShowTotalBalancesScreen();
                     _GoBackToTransactionsMenu();
                     break;
+                case enTransactionsMenuOptions.Transfer:
+                    Console.Clear();
+                    _ShowTransferScreen();
+                    _GoBackToTransactionsMenu();
+                    break;
                 case enTransactionsMenuOptions.ShowMainMenu:
 
                     // Main menu will handle this case
@@ -98,7 +109,8 @@ namespace Bank_System
             Console.WriteLine("\t\t\t\t\t[1] Deposit.");
             Console.WriteLine("\t\t\t\t\t[2] Withdraw.");
             Console.WriteLine("\t\t\t\t\t[3] Total Balances.");
-            Console.WriteLine("\t\t\t\t\t[4] Main Menu.");
+            Console.WriteLine("\t\t\t\t\t[4] Transfer.");
+            Console.WriteLine("\t\t\t\t\t[5] Main Menu.");
             Console.WriteLine("\t\t\t\t\t===========================================\n");
 
             _PerformTransactionsMenuOption((enTransactionsMenuOptions)ReadTransactionsMenuOption());

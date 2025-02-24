@@ -459,6 +459,18 @@ namespace Bank_System
 
         }
 
+        public bool Transfer(double Amount, ref clsBankClient DestinationClient)
+        {
+            if (Amount > AccountBalance)
+            {
+                return false;
+            }
+
+            Withdraw(Amount);
+            DestinationClient.Deposit(Amount);
+            return true;
+        }
+
     }
 
 }

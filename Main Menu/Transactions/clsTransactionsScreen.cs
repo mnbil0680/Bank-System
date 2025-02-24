@@ -24,21 +24,37 @@ namespace Bank_System
 
         private static void _ShowDepositScreen()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsDepositScreen.ShowDepositScreen();
         }
 
         private static void _ShowWithdrawScreen()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsWithdrawScreen.ShowWithdrawScreen();
         }
 
         private static void _ShowTotalBalancesScreen()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsTotalBalancesScreen.ShowTotalBalances();
         }
 
         private static void _GoBackToTransactionsMenu()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             Console.WriteLine("\n\nPress any key to go back to Transactions Menu...");
             Console.ReadKey();
             ShowTransactionsMenu();

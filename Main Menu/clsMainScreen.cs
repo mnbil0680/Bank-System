@@ -32,31 +32,59 @@ namespace Bank_System
 
         private static void _ShowAllClientsScreen()
         {
-            //Console.WriteLine("\nClient List Screen Will be here...");
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
+            
             clsClientListScreen.ShowClientsList();
         }
         private static void _ShowAddNewClientsScreen()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsAddNewClientScreen.ShowAddNewClientScreen();
         }
         private static void _ShowDeleteClientScreen()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsDeleteClientScreen.ShowDeleteClientScreen();
         }
         private static void _ShowUpdateClientScreen() 
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsUpdateClientScreen.ShowUpdateClientScreen();
         }
         private static void _ShowFindClientScreen() 
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsFindClientScreen.ShowFindClientScreen();
         } 
         private static void _ShowTransactionsMenu()
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsTransactionsScreen.ShowTransactionsMenu();
         }
         private static void _ShowManageUsersMenu() 
         {
+            if (!CheckAccessRights(clsUser.enPermissions.pListClients))
+            {
+                return;// this will exit the function and it will not continue
+            }
             clsMangeUsers.ShowManageUsersMenue();
         }
 

@@ -47,6 +47,7 @@ namespace Bank_System
 
         public static void ShowAddNewClientScreen()
         {
+            
             _DrawScreenHeader("\t  Add New Client Screen");
 
             Console.Write("\nPlease Enter Account Number: ");

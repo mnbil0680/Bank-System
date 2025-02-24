@@ -26,6 +26,7 @@ namespace Bank_System
 
         public static void ShowDeleteClientScreen()
         {
+            
             _DrawScreenHeader("\tDelete Client Screen");
 
             Console.Write("\nPlease Enter Account Number: ");

@@ -17,6 +17,8 @@ namespace Bank_System
 
         public static void ShowClientsList()
         {
+            
+
             List<clsBankClient> clients = clsBankClient.GetClientsList();
             string title = "\t  Client List Screen";
             string subTitle = $"\t    ({clients.Count}) Client(s).";

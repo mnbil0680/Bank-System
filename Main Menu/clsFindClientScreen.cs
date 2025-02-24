@@ -25,6 +25,7 @@ namespace Bank_System
 
         public static void ShowFindClientScreen()
         {
+            
             _DrawScreenHeader("\tFind Client Screen");
 
             Console.Write("\nPlease Enter Account Number: ");

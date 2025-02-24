@@ -20,6 +20,19 @@ namespace Bank_System
 
             Console.WriteLine("\n\t\t\t\t\t______________________________________\n\n");
         }
+        public static bool CheckAccessRights(clsUser.enPermissions Permission)
+        {
+            if (!clsGlobal.CurrentUser.CheckAccessPermission(Permission))
+            {
+                Console.WriteLine("\t\t\t\t\t______________________________________");
+                Console.WriteLine("\n\n\t\t\t\t\t  Access Denied! Contact your Admin.");
+                Console.WriteLine("\t\t\t\t\t______________________________________\n\n");
+                return false;
+            }
+
+            return true;
+        }
+
     }
 
 

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Numerics;
+using System.Runtime.Intrinsics;
 using System.Text;
 using System.Threading.Tasks;
+using static Bank_System.clsUser;
 
 namespace Bank_System
 {
@@ -432,11 +435,65 @@ namespace Bank_System
             {
                 Console.WriteLine("Sorry, File Does not Exist ");
             }
+        }
+        public struct stLoginRegisterRecord
+        {
+            public string DateTime;
+            public string UserName;
+            public string Password;
+            public int Permissions;
 
+        };
+        private static stLoginRegisterRecord _ConvertLoginRegisterLineToRecord(string Line, string Seperator = "#//#")
+        {
+            stLoginRegisterRecord LoginRegisterRecord;
+
+
+            List<string> LoginRegisterDataLine = clsString.split(Line, Seperator);
+            LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
+            LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
+            LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+            LoginRegisterRecord.Permissions = Int32.Parse(LoginRegisterDataLine[3]);
+
+            return LoginRegisterRecord;
 
         }
 
+        
+        public static List<stLoginRegisterRecord> GetLoginRegisterList()
+        {
+            List<stLoginRegisterRecord> vLoginRegisterRecord = new List<stLoginRegisterRecord>();
+            stLoginRegisterRecord LoginRegisterRecord;
+     
+            string PathName = @"D:\Bank System\LoginRegister.txt";
+            FileStream FS = System.IO.File.OpenRead(PathName);
+            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+            if (System.IO.File.Exists(PathName))
+            {
+                try
+                {
 
+                    string Line;
+                    while ((Line = SR.ReadLine()) != null)
+                    {
+                        LoginRegisterRecord = _ConvertLoginRegisterLineToRecord(Line);
+                        vLoginRegisterRecord.Add(LoginRegisterRecord);
+                    }
+                    FS.Close();
+                    return vLoginRegisterRecord;
+                }
+                catch (Exception e)
+                {
+                    FS.Close();
+                    return vLoginRegisterRecord;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, File Does not Exist ");
+                return vLoginRegisterRecord;
+            }
+        }
     }
 
 }

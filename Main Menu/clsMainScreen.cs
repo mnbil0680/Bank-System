@@ -14,13 +14,13 @@ namespace Bank_System
         private enum enMainMenueOptions
         {
             ListClients = 1, AddNewClient, DeleteClient, UpdateClient,
-            FindClient, ShowTransactionsMenu, ManageUsers, Exit
+            FindClient, ShowTransactionsMenu, ManageUsers, LoginRegister, Exit
         }
 
         private static short _ReadMainMenuOption()
         {
-            Console.Write("\nChoose what do you want to do? [1 to 8]: ");
-            return clsInputValidate.ReadShortNumberBetween(1, 8, "Enter a number between 1 and 8: ");
+            Console.Write("\nChoose what do you want to do? [1 to 9]: ");
+            return clsInputValidate.ReadShortNumberBetween(1, 9, "Enter a number between 1 and 9: ");
         }
 
         private static void _GoBackToMainMenu()
@@ -87,7 +87,10 @@ namespace Bank_System
             }
             clsMangeUsers.ShowManageUsersMenue();
         }
-
+        private static void _ShowLoginRegisterScreen()
+        {
+            clsLoginRegisterScreen.ShowLoginRegisterScreen();
+        }
         private static void _Logout()
         {
             clsGlobal.CurrentUser = clsUser.Find("", "");
@@ -127,6 +130,10 @@ namespace Bank_System
                     _ShowManageUsersMenu();
                     _GoBackToMainMenu();
                     break;
+                case enMainMenueOptions.LoginRegister:
+                    _ShowLoginRegisterScreen();
+                    _GoBackToMainMenu();
+                    break;
                 case enMainMenueOptions.Exit:
                     Console.Clear();
                     clsGlobal.CurrentUser = clsUser.Find("", "");
@@ -150,7 +157,8 @@ namespace Bank_System
             Console.WriteLine("\t\t\t\t\t[5] Find Client.");
             Console.WriteLine("\t\t\t\t\t[6] Transactions.");
             Console.WriteLine("\t\t\t\t\t[7] Manage Users.");
-            Console.WriteLine("\t\t\t\t\t[8] Logout.");
+            Console.WriteLine("\t\t\t\t\t[8] LoginRegister.");
+            Console.WriteLine("\t\t\t\t\t[9] Logout.");
             Console.WriteLine("\t\t\t\t\t===========================================\n");
 
             _PerformMainMenuOption((enMainMenueOptions)_ReadMainMenuOption());

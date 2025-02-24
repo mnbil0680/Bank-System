@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bank_System
+﻿namespace Bank_System
 {
     internal class clsTransferScreen : clsScreen
     {
@@ -18,10 +12,18 @@ namespace Bank_System
             Console.WriteLine("\n___________________\n");
         }
 
-        private static string ReadAccountNumber()
+        private static string ReadAccountNumber(bool dist)
         {
             string accountNumber;
-            Console.Write("\nPlease Enter Account Number to Transfer From: ");
+            if (dist)
+            {
+                Console.Write("\nPlease Enter Account Number to Transfer To: ");
+            }
+            else
+            {
+                Console.Write("\nPlease Enter Account Number to Transfer From: ");
+
+            }
             accountNumber = clsInputValidate.ReadString();
 
             while (!clsBankClient.IsClientExist(accountNumber))
@@ -53,10 +55,10 @@ namespace Bank_System
         {
             _DrawScreenHeader("\tTransfer Screen");
 
-            clsBankClient sourceClient = clsBankClient.Find(ReadAccountNumber());
+            clsBankClient sourceClient = clsBankClient.Find(ReadAccountNumber(false));
             PrintClient(sourceClient);
 
-            clsBankClient destinationClient = clsBankClient.Find(ReadAccountNumber());
+            clsBankClient destinationClient = clsBankClient.Find(ReadAccountNumber(true));
             PrintClient(destinationClient);
 
             double amount = ReadAmount(sourceClient);
@@ -67,7 +69,7 @@ namespace Bank_System
 
             if (answer == 'Y' || answer == 'y')
             {
-                if (sourceClient.Transfer(amount, ref destinationClient))
+                if (sourceClient.Transfer(amount, ref destinationClient, clsGlobal.CurrentUser.ToString()))
                 {
                     Console.WriteLine("\nTransfer done successfully\n");
                 }

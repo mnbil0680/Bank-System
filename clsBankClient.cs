@@ -459,7 +459,7 @@ namespace Bank_System
 
         }
 
-        public bool Transfer(double Amount, ref clsBankClient DestinationClient)
+        public bool Transfer(double Amount, ref clsBankClient DestinationClient, string UserName)
         {
             if (Amount > AccountBalance)
             {
@@ -468,8 +468,55 @@ namespace Bank_System
 
             Withdraw(Amount);
             DestinationClient.Deposit(Amount);
+            _RegisterTransferLog(Amount, DestinationClient, UserName);
             return true;
         }
+
+        void _RegisterTransferLog(double Amount, clsBankClient DestinationClient, string UserName="")
+        {
+
+            string stDataLine = _PrepareTransferLogRecord(Amount, DestinationClient, UserName);
+            // path of the file that we want to create
+            string PathName = @"D:\Bank System\TransferLog.txt";
+
+
+            if (System.IO.File.Exists(PathName))
+            {
+                try
+                {
+
+                    // write but clear all content
+
+                    System.IO.File.AppendAllText(PathName, '\n' + stDataLine);
+
+
+
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, File Does not Exist ");
+            }
+        }
+
+        string _PrepareTransferLogRecord(double Amount, clsBankClient DestinationClient, string UserName, string Seperator = "#//#")
+        {
+
+            string TransferLogRecord = "";
+            TransferLogRecord += DateTime.Now.ToString() + Seperator;
+            TransferLogRecord += AccountNumber() + Seperator;
+            TransferLogRecord += DestinationClient.AccountNumber() + Seperator;
+            TransferLogRecord += (Amount).ToString() + Seperator;
+            TransferLogRecord += (AccountBalance).ToString() + Seperator;
+            TransferLogRecord += (DestinationClient.AccountBalance).ToString() + Seperator;
+            TransferLogRecord += UserName;
+            return TransferLogRecord;
+        }
+
 
     }
 

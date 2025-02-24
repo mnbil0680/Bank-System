@@ -134,6 +134,42 @@ namespace Bank_System
 
             return NumberToText(number / 1000000000) + " Billion " + (number % 1000000000 > 0 ? NumberToText(number % 1000000000) : "");
         }
+
+
+        public static string EncryptText(string Text, short EncryptionKey = 2)
+        {
+            char[] textArray = Text.ToCharArray(); // Convert string to mutable array
+            for (int i = 0; i < Text.Length; i++)
+            {
+
+                textArray[i] = Convert.ToChar( (int)Text[i] + EncryptionKey);
+
+            }
+            Text = new string(textArray); // Convert back to string
+            return Text;
+
+        }
+
+        public static string DecryptText(string Text, short EncryptionKey = 2)
+        {
+            char[] textArray = Text.ToCharArray(); // Convert string to mutable array
+
+            for (int i = 0; i < Text.Length; i++)
+            {
+
+                textArray[i] = Convert.ToChar( (int)Text[i] - EncryptionKey);
+
+            }
+            Text = new string(textArray); // Convert back to string
+            return Text;
+           
+
+        }
+
+
+
+
+
     }
 
 

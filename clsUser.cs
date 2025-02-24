@@ -25,13 +25,13 @@ namespace Bank_System
         {
             string[] userData = line.Split(new string[] { separator }, StringSplitOptions.None);
             return new clsUser(enMode.UpdateMode, userData[0], userData[1], userData[2],
-                               userData[3], userData[4], userData[5], int.Parse(userData[6]));
+                               userData[3], userData[4],  clsUtil.DecryptText(userData[5]), int.Parse(userData[6]));
         }
 
         private static string _ConvertUserObjectToLine(clsUser user, string separator = "#//#")
         {
             return $"{user.FirstName}{separator}{user.LastName}{separator}{user.Email}{separator}" +
-                   $"{user.Phone}{separator}{user.UserName}{separator}{user.Password}{separator}" +
+                   $"{user.Phone}{separator}{user.UserName}{separator}{clsUtil.EncryptText(user.Password)}{separator}" +
                    $"{user.Permissions}";
         }
 
@@ -403,7 +403,7 @@ namespace Bank_System
             string LoginRecord = "";
             LoginRecord += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) + Seperator;
             LoginRecord += UserName + Seperator;
-            LoginRecord += Password + Seperator;
+            LoginRecord += clsUtil.EncryptText(Password) + Seperator;
             LoginRecord += Permissions.ToString();
             return LoginRecord;
         }

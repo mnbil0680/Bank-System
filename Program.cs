@@ -13,10 +13,6 @@ namespace Bank_System
     static void Main(string[] args)
         {
             clsLoginScreen.ShowLoginScreen();
-            
-            
-
-
         }
     }
 }

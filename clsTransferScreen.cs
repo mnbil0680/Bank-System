@@ -69,7 +69,7 @@
 
             if (answer == 'Y' || answer == 'y')
             {
-                if (sourceClient.Transfer(amount, ref destinationClient, clsGlobal.CurrentUser.ToString()))
+                if (sourceClient.Transfer(amount, ref destinationClient, clsGlobal.CurrentUser.UserName))
                 {
                     Console.WriteLine("\nTransfer done successfully\n");
                 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Numerics;
 using static System.Net.WebRequestMethods;
 using System.Runtime.Intrinsics;
+using static Bank_System.clsUser;
 
 namespace Bank_System
 {
@@ -517,7 +518,77 @@ namespace Bank_System
             return TransferLogRecord;
         }
 
+        public struct stTrnsferLogRecord
+        {
+            public string DateTime;
+            public string SourceAccountNumber;
+            public string DestinationAccountNumber;
+            public double Amount;
+            public double srcBalanceAfter;
+            public double destBalanceAfter;
+            public string UserName;
+
+        };
+
+        public static stTrnsferLogRecord _ConvertTransferLogLineToRecord(string Line, string Seperator = "#//#")
+        {
+            stTrnsferLogRecord TrnsferLogRecord;
+
+            List<string> vTrnsferLogRecordLine = clsString.split(Line, Seperator);
+            TrnsferLogRecord.DateTime = vTrnsferLogRecordLine[0];
+            TrnsferLogRecord.SourceAccountNumber = vTrnsferLogRecordLine[1];
+            TrnsferLogRecord.DestinationAccountNumber = vTrnsferLogRecordLine[2];
+            TrnsferLogRecord.Amount = Convert.ToDouble(vTrnsferLogRecordLine[3]);
+            TrnsferLogRecord.srcBalanceAfter = Convert.ToDouble(vTrnsferLogRecordLine[4]);
+            TrnsferLogRecord.destBalanceAfter = Convert.ToDouble(vTrnsferLogRecordLine[5]);
+            TrnsferLogRecord.UserName = vTrnsferLogRecordLine[6];
+
+            return TrnsferLogRecord;
+
+        }
+
+        public static List<stTrnsferLogRecord> GetTransfersLogList()
+        {
+            List<stTrnsferLogRecord> vTransferLogRecord = new List<stTrnsferLogRecord>();
+            stTrnsferLogRecord TrnsferLogRecord;
+            string PathName = @"D:\Bank System\TransferLog.txt";
+            FileStream FS = System.IO.File.OpenRead(PathName);
+            StreamReader SR = new StreamReader(FS, Encoding.UTF8);
+            if (System.IO.File.Exists(PathName))
+            {
+                try
+                {
+
+                    string Line;
+                    while ((Line = SR.ReadLine()) != null)
+                    {
+                        TrnsferLogRecord = _ConvertTransferLogLineToRecord(Line);
+                        vTransferLogRecord.Add(TrnsferLogRecord);
+                    }
+                    FS.Close();
+                    return vTransferLogRecord;
+                }
+                catch (Exception e)
+                {
+                    FS.Close();
+                    return vTransferLogRecord;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, File Does not Exist ");
+                return vTransferLogRecord;
+            }
+
+          
+
+        }
+
+           
+
+        }
+
 
     }
 
-}
+

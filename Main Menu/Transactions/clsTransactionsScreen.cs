@@ -14,7 +14,8 @@ namespace Bank_System
             Withdraw = 2,
             ShowTotalBalance = 3,
             Transfer=4,
-            ShowMainMenu = 5
+            TransferLog = 5,
+            ShowMainMenu = 6
         }
 
         private static short ReadTransactionsMenuOption()
@@ -65,7 +66,10 @@ namespace Bank_System
         {
             clsTransferScreen.ShowTransferScreen();
         }
-        
+        private static void _ShowTransferLogScreen()
+        {
+            clsTransferLogScreen.ShowTransferLogScreen();
+        }
         private static void _PerformTransactionsMenuOption(enTransactionsMenuOptions transactionOption)
         {
             
@@ -91,6 +95,11 @@ namespace Bank_System
                     _ShowTransferScreen();
                     _GoBackToTransactionsMenu();
                     break;
+                case enTransactionsMenuOptions.TransferLog:
+                    Console.Clear();
+                    _ShowTransferLogScreen();
+                    _GoBackToTransactionsMenu();
+                    break;
                 case enTransactionsMenuOptions.ShowMainMenu:
 
                     // Main menu will handle this case
@@ -110,7 +119,8 @@ namespace Bank_System
             Console.WriteLine("\t\t\t\t\t[2] Withdraw.");
             Console.WriteLine("\t\t\t\t\t[3] Total Balances.");
             Console.WriteLine("\t\t\t\t\t[4] Transfer.");
-            Console.WriteLine("\t\t\t\t\t[5] Main Menu.");
+            Console.WriteLine("\t\t\t\t\t[5] Transfer Log.");
+            Console.WriteLine("\t\t\t\t\t[6] Main Menu.");
             Console.WriteLine("\t\t\t\t\t===========================================\n");
 
             _PerformTransactionsMenuOption((enTransactionsMenuOptions)ReadTransactionsMenuOption());

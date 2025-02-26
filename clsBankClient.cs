@@ -11,7 +11,7 @@ using static Bank_System.clsUser;
 
 namespace Bank_System
 {
-    internal class clsBankClient : clsP0erson
+    internal class clsBankClient : clsPerson
     {
         internal enum enMode { EmptyMode, UpdateMode, AddNewMode }
         private enMode _Mode;
